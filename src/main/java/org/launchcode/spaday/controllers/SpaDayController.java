@@ -45,10 +45,15 @@ public class SpaDayController {
                 "<input type = 'submit' value = 'Submit'>" +
                 "</form>";
         return html;
+
     }
 
     @PostMapping(value="")
     public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
+
+        model.addAttribute("name", name);
+        model.addAttribute("manipedi", manipedi);
+        model.addAttribute("skintype", skintype);
 
         ArrayList<String> facials = new ArrayList<>();
         facials.add("Microdermabrasion");
@@ -62,7 +67,7 @@ public class SpaDayController {
                 appropriateFacials.add(facials.get(i));
             }
         }
-
+        model.addAttribute("appropriateFacials", appropriateFacials);
         return "menu";
     }
 }
