@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, String verify) {
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors) {
 //        model.addAttribute("user", user);
 //        model.addAttribute("verify", verify);
 //        model.addAttribute("username", user.getUsername());
@@ -32,7 +32,7 @@ public class UserController {
         }
 
 
-        if (user.getPassword().equals(verify)) {
+        if (user.getPassword().equals(user.getVerifyPassword())) {
            return "user/index";
         }
         else {
